@@ -1,29 +1,60 @@
-const computerChoice = ['a', 'b', 'c'];
+const computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const game = document.querySelector('main');
 let wins = 0,
-    losses = 0;
+    losses = 0,
+    maxGuesses = 9,
+    wrongPick = [];
 
 
 document.onkeyup = function(event) {
     const userGuess = event.key;
-
+    
     const computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
 
-if(userGuess === 'a' || userGuess == 'b' || userGuess === 'c') {
-    const userWin =
-    (userGuess === 'a' && computerGuess === 'a') ||
-    (userGuess === 'b' && computerGuess === 'b') ||
-    (userGuess === 'c' && computerGuess === 'c');
-    if (userWin) {
-        wins++;
+    if (computerChoice.indexOf(userGuess) > -1) {
+        if (userGuess === computerGuess) {
+            wins++;
+            maxGuesses = 9;
+            wrongPick = [];
+        }
+
+        if (userGuess != computerGuess) {
+            maxGuesses --;
+            wrongPick.push(userGuess);
+        }
+
+        if (maxGuesses === 0) {
+            maxGuesses =9;
+            losses ++;
+            wrongPick = [];
+        }
     } else {
-        losses++;
-    }
+                alert("Who told you that was a letter?");
+            }
+
+// if(userGuess === 'a' || userGuess == 'b' || userGuess === 'c') {
+//     const userWin =
+//     (userGuess === 'a' && computerGuess === 'a') ||
+//     (userGuess === 'b' && computerGuess === 'b') ||
+//     (userGuess === 'c' && computerGuess === 'c');
+//     if (userWin) {
+//         wins++;
+//     } else {
+//         losses++;
+//     } 
 
     game.innerHTML = `
+    <p>You Choose: ${userGuess}<p>
+    <P>Computer Chose: ${computerGuess}<p>
     <p>wins: ${wins}<p>
     <p>losses: ${losses}<p>
+    <p>Guesses Left: ${maxGuesses}<p>
+    <p>Your Picks: ${wrongPick}<p>
     `
-    }
+    
+//      else {
+//         alert("Who told you that was a letter?");
+//     }
+    
 }
 
