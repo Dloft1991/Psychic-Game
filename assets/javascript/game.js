@@ -9,17 +9,23 @@ document.onkeyup = function(event) {
     const userGuess = event.key;
 
     const computeGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-        
+
+if(userGuess === 'a' || userGuess == 'b' || userGuess === 'c') {
     const userWin =
-    (userGuess === computerGuess);
+    (userGuess === 'a' && computerGuess === 'a')
+    (userGuess === 'b' && computerGuess === 'b')
+    (userGuess === 'c' && computerGuess === 'c');
     if (userWin) {
         wins++;
-    } else {
-        soFar++;
-    }
+    // } else {
+    //     soFar++;
+    // }
 
     game.innerHTML = `
-    <p>Wins: $(userGuess)<p>
-    <p>Losses: $()
+    <p>Wins: ${userGuess}<p>
+    <p>Losses: ${losses}<p>
+    <P>Guesses Left: ${}<p>
+    <p>Your Guesses so far: ${}<p>
     `
+}
 }
