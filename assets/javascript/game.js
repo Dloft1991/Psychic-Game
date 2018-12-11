@@ -32,17 +32,6 @@ document.onkeyup = function(event) {
                 alert("Who told you that was a letter?");
             }
 
-// if(userGuess === 'a' || userGuess == 'b' || userGuess === 'c') {
-//     const userWin =
-//     (userGuess === 'a' && computerGuess === 'a') ||
-//     (userGuess === 'b' && computerGuess === 'b') ||
-//     (userGuess === 'c' && computerGuess === 'c');
-//     if (userWin) {
-//         wins++;
-//     } else {
-//         losses++;
-//     } 
-
     game.innerHTML = `
     <p>You Choose: ${userGuess}<p>
     <P>Computer Chose: ${computerGuess}<p>
@@ -51,10 +40,7 @@ document.onkeyup = function(event) {
     <p>Guesses Left: ${maxGuesses}<p>
     <p>Your Picks: ${wrongPick}<p>
     `
-    
-//      else {
-//         alert("Who told you that was a letter?");
-//     }
+
     
 }
 
