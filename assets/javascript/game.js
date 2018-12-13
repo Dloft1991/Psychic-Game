@@ -1,32 +1,39 @@
-const computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const game = document.querySelector('main');
+var computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var game = document.querySelector('main');
 let wins = 0,
     losses = 0,
-    maxGuesses = 9,
+    maxGuesses = 10,
     wrongPick = [];
+
+    var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
 
 
 document.onkeyup = function(event) {
-    const userGuess = event.key;
+    var userGuess = event.key;
     
-    const computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+    
 
     if (computerChoice.indexOf(userGuess) > -1) {
-        if (userGuess === computerGuess) {
+        
+        if ((userGuess === computerGuess) && (maxGuesses > 0 )) {
             wins++;
-            maxGuesses = 9;
+            maxGuesses = 10;
             wrongPick = [];
+            computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+
         }
 
-        if (userGuess != computerGuess) {
+        if ((userGuess != computerGuess) && (maxGuesses > 0)) {
             maxGuesses --;
             wrongPick.push(userGuess);
         }
 
         if (maxGuesses === 0) {
-            maxGuesses =9;
+            maxGuesses = 10;
             losses ++;
             wrongPick = [];
+            computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+
         }
     } else {
                 alert("Who told you that was a letter?");
