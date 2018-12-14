@@ -3,10 +3,11 @@ var game = document.querySelector('main');
 let wins = 0,
     losses = 0,
     maxGuesses = 10,
+    answer = [],
     wrongPick = [];
 
     var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-
+    var showComputerGuess = document.getElementById('showComputerGuess');
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
@@ -19,8 +20,6 @@ document.onkeyup = function(event) {
             wins++;
             maxGuesses = 10;
             wrongPick = [];
-            computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-
         }
 
         if ((userGuess != computerGuess) && (maxGuesses > 0)) {
@@ -33,15 +32,15 @@ document.onkeyup = function(event) {
             losses ++;
             wrongPick = [];
             computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-
+            // showComputerGuess.innerHTML = computerGuess;
         }
     } else {
                 alert("Who told you that was a letter?");
             }
 
+    
     game.innerHTML = `
     <p>You Choose: ${userGuess}<p>
-    <P>Computer Chose: ${computerGuess}<p>
     <p>wins: ${wins}<p>
     <p>losses: ${losses}<p>
     <p>Guesses Left: ${maxGuesses}<p>
